@@ -14,8 +14,9 @@ export namespace Components {
     'close': () => Promise<void>;
     'header': string;
     'open': () => Promise<void>;
-    'openToggle': boolean;
+    'show': boolean;
   }
+  interface UcStockPrice {}
 }
 
 declare global {
@@ -26,19 +27,28 @@ declare global {
     prototype: HTMLUcSideDrawerElement;
     new (): HTMLUcSideDrawerElement;
   };
+
+  interface HTMLUcStockPriceElement extends Components.UcStockPrice, HTMLStencilElement {}
+  var HTMLUcStockPriceElement: {
+    prototype: HTMLUcStockPriceElement;
+    new (): HTMLUcStockPriceElement;
+  };
   interface HTMLElementTagNameMap {
     'uc-side-drawer': HTMLUcSideDrawerElement;
+    'uc-stock-price': HTMLUcStockPriceElement;
   }
 }
 
 declare namespace LocalJSX {
   interface UcSideDrawer {
     'header'?: string;
-    'openToggle'?: boolean;
+    'show'?: boolean;
   }
+  interface UcStockPrice {}
 
   interface IntrinsicElements {
     'uc-side-drawer': UcSideDrawer;
+    'uc-stock-price': UcStockPrice;
   }
 }
 
@@ -49,6 +59,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'uc-side-drawer': LocalJSX.UcSideDrawer & JSXBase.HTMLAttributes<HTMLUcSideDrawerElement>;
+      'uc-stock-price': LocalJSX.UcStockPrice & JSXBase.HTMLAttributes<HTMLUcStockPriceElement>;
     }
   }
 }

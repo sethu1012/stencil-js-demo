@@ -43,12 +43,13 @@
                 </ul>
             </nav>
         </uc-side-drawer>
+        <uc-stock-price></uc-stock-price>
         <script>
             const sideDrawerBtn = document.querySelector("#side-drawer-btn");
             const sideDrawer = document.querySelector("uc-side-drawer");
             sideDrawerBtn.addEventListener("click", () => {
-                if (!sideDrawer.openToggle) {
-                    sideDrawer.openToggle = true;
+                if (!sideDrawer.show) {
+                    sideDrawer.open();
                 }
             });
         </script>

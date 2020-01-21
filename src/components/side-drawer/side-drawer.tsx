@@ -6,7 +6,7 @@ import { Component, h, Prop, State, Method } from "@stencil/core";
     shadow: true
 })
 export class SideDrawer {
-    @State() showContactInfo: boolean;
+    @State() showContactInfo: boolean = false;
 
     @Prop({
         reflectToAttr: true
@@ -17,10 +17,10 @@ export class SideDrawer {
         reflectToAttr: true,
         mutable: true
     })
-    openToggle: boolean;
+    show: boolean = false;
 
     onCloseDrawer = () => {
-        this.openToggle = false;
+        this.show = false;
     };
 
     onContentChange = (content: string) => {
@@ -28,11 +28,11 @@ export class SideDrawer {
     };
 
     @Method() async open() {
-        this.openToggle = true;
+        this.show = true;
     }
 
     @Method() async close() {
-        this.openToggle = false;
+        this.show = false;
     }
 
     render() {
@@ -48,7 +48,8 @@ export class SideDrawer {
                 </div>
             );
         }
-        return (
+        return [
+            <div class="backdrop" onClick={this.onCloseDrawer} />,
             <aside>
                 <header>
                     <h1>{this.header}</h1>
@@ -70,6 +71,6 @@ export class SideDrawer {
                 </section>
                 <main>{mainContent}</main>
             </aside>
-        );
+        ];
     }
 }
